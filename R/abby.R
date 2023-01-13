@@ -18,8 +18,33 @@ abby <- function() {
 
 	# Define the user interface
 	ui <- fluidPage(
-		sliderInput("slope", "Slope", min = 1, max = 10, value = 1),
-		plotOutput("line_plot")
+		titlePanel("Abby"),
+
+		sidebarLayout(
+
+			sidebarPanel(
+				sliderInput("slope", label = "Slope", min = 1, max = 10, value = 1),
+
+				selectInput(
+					"Test", label = "Hypothesis Test",
+					choices = list(
+						"Binomial test" = "p",
+						"t-test" = "t"
+						),
+					selected = "p"),
+
+
+				numericInput("users_batch", label = "Users per Batch", value = 1000),
+				numericInput("min_batches", label = "Min. Batches", value = 1),
+				numericInput("max_batches", label = "Max. Batches", value = 4)
+				),
+
+			mainPanel(
+				plotOutput("line_plot")
+			)
+
+		)
+
 	)
 
 	# Define the server logic
