@@ -16,15 +16,28 @@
 #' @export
 abby <- function() {
 
-	#------------------------------------------------------------ User Interface
+	# Define the user interface
 	ui <- fluidPage(
-		"Hello, world!"
+		sliderInput("slope", "Slope", min = 1, max = 10, value = 1),
+		plotOutput("line_plot")
 	)
-	server <- function(input, output, session) {
+
+	# Define the server logic
+	server <- function(input, output) {
+
+		# Create a reactive variable for the line data
+		line_data <- reactive({
+			data.frame(x = c(0, 10), y = input$slope * c(0, 10))
+		})
+
+		# Render the line plot
+		output$line_plot <- renderPlot({
+			ggplot(line_data(), aes(x, y)) +
+				geom_line()
+		})
 	}
 
-
-	#------------------------------------------------------------------- Run App
+	# Run the Shiny app
 	viewer <- dialogViewer(dialogName = "abby", width = 800, height = 600)
 	runGadget(ui, server, viewer = viewer, stopOnCancel = FALSE)
 }

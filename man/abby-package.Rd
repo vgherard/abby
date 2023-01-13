@@ -8,6 +8,14 @@
 \description{
 What the package does (one paragraph).
 }
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://github.com/vgherard/abby}
+  \item Report bugs at \url{https://github.com/vgherard/abby/issues}
+}
+
+}
 \author{
 \strong{Maintainer}: Valerio Gherardi \email{vgherard840@gmail.com} (\href{https://orcid.org/0000-0002-8215-3013}{ORCID})
 
