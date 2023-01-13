@@ -23,7 +23,6 @@ abby <- function() {
 
 			sidebarPanel(
 				actionButton("compute", "Compute"),
-
 				selectInput(
 					"test_type", label = "AB Test type",
 					choices = list(
@@ -47,15 +46,18 @@ abby <- function() {
 					min = 0,
 					max = 1
 					),
-				numericInput(
+				textInput(
 					"pct_change",
 					label = "% Change from Baseline",
-					value = 0.1,
-					step = 0.01,
-					min = 0
+					value = "0.05, 0.1, 0.15, 0.2"
 					),
 
 				numericInput("users_batch", label = "Users / Batch", value = 1000),
+				shinyWidgets::numericRangeInput(
+					"batches",
+					"Batches",
+					value = c(1, 2),
+					min = 1),
 				numericInput("min_batches", label = "Min. Batches", value = 1),
 				numericInput("max_batches", label = "Max. Batches", value = 2),
 				sliderInput("pct_traffic_a",
@@ -82,12 +84,12 @@ abby <- function() {
 					test_type = input$test_type,
 					alternative = input$alternative,
 					baseline = input$baseline,
-					pct_change = input$pct_change,
+					pct_change = parse_cs_numeric_input(input$pct_change),
 					users_batch = input$users_batch,
-					batches = input$min_batches:input$max_batches,
+					batches = input$batches[1]:input$batches[2],
 					pct_traffic_a = input$pct_traffic_a,
 					pct_traffic_b = input$pct_traffic_b,
-					fpr = seq(from = 1, to = 999, by = 3) / 1000
+					fpr = seq(from = 1, to = 99, by = 1) / 100
 				)
 				.data$fnr <- NA_real_
 
@@ -111,7 +113,7 @@ abby <- function() {
 
 				})
 
-				ggplot(.data, aes(x = fpr, y = fnr, color = pct_change)) +
+				ggplot(.data, aes(x = fpr, y = fnr, color = as.factor(pct_change))) +
 					geom_line() +
 					facet_grid(. ~ batches) +
 					geom_hline(yintercept = 0.2, linetype = "dashed") +
