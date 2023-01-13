@@ -23,7 +23,7 @@ abby <- function() {
 
 			sidebarPanel(
 				actionButton("compute", "Compute"),
-				sliderInput("slope", label = "Slope", min = 1, max = 10, value = 1),
+
 				selectInput(
 					"test_type", label = "AB Test type",
 					choices = list(
