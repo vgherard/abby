@@ -14,6 +14,9 @@ Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.1
 Imports:
   shiny,
-  ggplot2
+  dplyr,
+  tidyr,
+  ggplot2,
+  pwr
 URL: https://github.com/vgherard/abby
 BugReports: https://github.com/vgherard/abby/issues
