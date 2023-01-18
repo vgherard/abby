@@ -58,8 +58,6 @@ abby <- function() {
 					"Batches",
 					value = c(1, 2),
 					min = 1),
-				numericInput("min_batches", label = "Min. Batches", value = 1),
-				numericInput("max_batches", label = "Max. Batches", value = 2),
 				sliderInput("pct_traffic_a",
 										label = "% Traffic (A)", min = 0, max = 1, value = 0.5,
 										step = 0.01
