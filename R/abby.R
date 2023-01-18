@@ -26,8 +26,7 @@ abby <- function() {
 				selectInput(
 					"test_type", label = "AB Test type",
 					choices = list(
-						"Binomial test" = "p",
-						"t-test" = "t"
+						"Binomial test" = "p"
 						),
 					selected = "p"),
 				selectInput(
