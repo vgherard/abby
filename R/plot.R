@@ -1,4 +1,4 @@
-plot_fnr_fpr_by_batches <- function(
+plot_fnr_fpr_by_pct_change <- function(
 		data,
 		xintercept = 0.2,
 		yintercept = 0.2,
@@ -11,14 +11,19 @@ plot_fnr_fpr_by_batches <- function(
 		colortitle = "% Change from Baseline"
 		)
 {
-	ggplot(data, aes(x = fpr, y = fnr, color = as.factor(pct_change))) +
-		geom_line() +
-		facet_grid(. ~ batches) +
-		geom_vline(xintercept = xintercept, linetype = "dashed") +
-		geom_hline(yintercept = yintercept, linetype = "dashed") +
-		scale_x_continuous(name = xtitle, breaks = xbreaks, labels = xlabels) +
-		scale_y_continuous(name = ytitle, breaks = ybreaks, labels = ylabels) +
-		guides(color = guide_legend("% Change from Baseline")) +
-		NULL
+	data %>%
+		mutate(
+			color = as.factor(pct_change),
+			grid_label = ifelse(batches == 1, "1 batch", paste(batches, "batches"))
+			) %>%
+		ggplot(aes(x = fpr, y = fnr, color = color)) +
+			geom_line() +
+			facet_grid(. ~ grid_label) +
+			geom_vline(xintercept = xintercept, linetype = "dashed") +
+			geom_hline(yintercept = yintercept, linetype = "dashed") +
+			scale_x_continuous(name = xtitle, breaks = xbreaks, labels = xlabels) +
+			scale_y_continuous(name = ytitle, breaks = ybreaks, labels = ylabels) +
+			guides(color = guide_legend("% Change from Baseline")) +
+			NULL
 }
 
