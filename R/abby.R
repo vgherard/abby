@@ -81,7 +81,7 @@ abby <- function() {
 	{
 			output$plot <- renderPlot({
 				data <- compute_power_wrap(input)
-				plot_power_grid(data)
+				plot_fnr_fpr_by_batches(data)
 			}) |>
 				bindEvent(input$compute)
 	}

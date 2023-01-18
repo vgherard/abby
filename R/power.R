@@ -19,7 +19,8 @@ compute_power <- function(
 		users_batch,
 		batches,
 		pct_traffic_a,
-		pct_traffic_b
+		pct_traffic_b,
+		fpr_grid = seq(from = 1, to = 99, by = 1) / 100
 		)
 {
 
@@ -32,7 +33,7 @@ compute_power <- function(
 		batches = batches[1]:batches[2],
 		pct_traffic_a = pct_traffic_a,
 		pct_traffic_b = pct_traffic_b,
-		fpr = seq(from = 1, to = 99, by = 1) / 100
+		fpr = fpr_grid
 	)
 	res$fnr <- NA_real_
 
@@ -58,24 +59,3 @@ compute_power <- function(
 
 	return(res)
 }
-
-plot_power_grid <- function(data) {
-	ggplot(data, aes(x = fpr, y = fnr, color = as.factor(pct_change))) +
-		geom_line() +
-		facet_grid(. ~ batches) +
-		geom_hline(yintercept = 0.2, linetype = "dashed") +
-		geom_vline(xintercept = 0.2, linetype = "dashed") +
-		scale_y_continuous(
-			name = "False Negative Rate",
-			breaks = seq(from = 0, to = 1, by = 0.2),
-			labels = scales::label_percent(),
-		) +
-		scale_x_continuous(
-			name = "False Positive Rate",
-			breaks = seq(from = 0, to = 1, by = 0.2),
-			labels = scales::label_percent(),
-		) +
-		guides(color = guide_legend("% Change from Baseline")) +
-		NULL
-}
-
