@@ -67,7 +67,7 @@ abby <- function() {
 										)
 				),
 
-			mainPanel(plotOutput("plot"))
+			mainPanel(esquisse::ggplot_output("plot"))
 
 		)
 
@@ -76,11 +76,10 @@ abby <- function() {
 	# Define the server logic
 	server <- function(input, output)
 	{
-			output$plot <- renderPlot({
-				data <- compute_power_wrap(input)
-				plot_fnr_fpr_by_pct_change(data)
-			}) |>
-				bindEvent(input$compute)
+			data <- reactive(compute_power_wrap(input)) |> bindEvent(input$compute)
+			esquisse::render_ggplot("plot", {
+				plot_fnr_fpr_by_pct_change(data())
+			})
 	}
 
 	# Run the Shiny app
