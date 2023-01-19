@@ -1,5 +1,5 @@
 Package: abby
-Title: What the Package Does (One Line, Title Case)
+Title: Utilities for AB Test experimental design.
 Version: 0.0.0.9000
 Authors@R: 
         person(given = "Valerio",
@@ -7,7 +7,7 @@ Authors@R:
            role = c("aut", "cre"),
            email = "vgherard840@gmail.com",
            comment = c(ORCID = "0000-0002-8215-3013"))
-Description: What the package does (one paragraph).
+Description: Utilities for AB Test experimental design.
 License: GPL (>= 3)
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)

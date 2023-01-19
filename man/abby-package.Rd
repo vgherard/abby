@@ -4,9 +4,9 @@
 \name{abby-package}
 \alias{abby}
 \alias{abby-package}
-\title{abby: What the Package Does (One Line, Title Case)}
+\title{abby: Utilities for AB Test experimental design.}
 \description{
-What the package does (one paragraph).
+Utilities for AB Test experimental design.
 }
 \seealso{
 Useful links:
