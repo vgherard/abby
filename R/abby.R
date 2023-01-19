@@ -21,9 +21,9 @@ abby <- function() {
 	data_panel <- miniContentPanel()
 	config_panel <- miniContentPanel(
 		fillCol(
+			flex = c(1, 1, 2),
 			fillRow(
-				flex = c(2,5,5),
-				h5("Experiment"),
+				# h5("Experiment"),
 				selectInput(
 					"test_type", label = "AB Test type",
 					choices = list(
@@ -41,8 +41,7 @@ abby <- function() {
 			),
 
 			fillRow(
-				flex = c(2,5,5),
-				h5("Prospects"),
+				# h5("Prospects"),
 				numericInput(
 				 	"baseline",
 				 	label = "Baseline",
@@ -59,8 +58,7 @@ abby <- function() {
 			),
 
 			fillRow(
-				flex = c(2,5,5),
-				h5("Traffic"),
+				# h5("Traffic"),
 				fillCol(
 					numericInput("users_batch", label = "Users / Batch", value = 1000),
 					shinyWidgets::numericRangeInput(
