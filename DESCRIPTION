@@ -12,10 +12,12 @@ License: GPL (>= 3)
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.1
+Depends:
+	R (>= 4.1)
 Imports:
-  pwr,
-  dplyr,
+	dplyr,
   tidyr,
+  pwr,
   ggplot2,
   shiny,
   shinyWidgets,
