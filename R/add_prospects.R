@@ -15,8 +15,8 @@ validate_prospects <- function(experiment, args) {
 
 	validators <- switch(experiment$type,
 		binomial = list(
-			value = assert_is_probability,
-			pct_change = assert_is_number
+			p1 = assert_is_probability,
+			p2 = Vectorize(assert_is_probability)
 		)
 	)
 
@@ -33,4 +33,7 @@ validate_prospects <- function(experiment, args) {
 		arg_value <- args[[arg_name]]
 		validators[[arg_name]](arg_value, name = arg_name)
 	}
+
 }
+
+
